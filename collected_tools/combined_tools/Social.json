@@ -1,0 +1,1017 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "post_tweet",
+            "description": "Post a new tweet on Twitter/X platform. Include text and optional media content.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the text content of the tweet (maximum 280 characters)."
+                    },
+                    "media_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Attach a list of media URLs (maximum 4 images or 1 video).",
+                        "maxItems": 4
+                    },
+                    "reply_to_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the tweet to reply to."
+                    },
+                    "is_sensitive": {
+                        "type": "boolean",
+                        "description": "Mark the tweet content as sensitive.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "content",
+                    "media_urls",
+                    "reply_to_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_tweet_comment",
+            "description": "Post a comment on an existing tweet on the Twitter/X platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "tweet_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the tweet to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the text content of the comment (maximum 280 characters)."
+                    },
+                    "media_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List the media URLs to attach (maximum 4 images or 1 video).",
+                        "maxItems": 4
+                    }
+                },
+                "required": [
+                    "tweet_id",
+                    "content",
+                    "media_urls"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_instagram",
+            "description": "Post content to Instagram. Include at least one media item.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "media_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of media URLs to post (maximum 10 images or 1 video).",
+                        "maxItems": 10
+                    },
+                    "caption": {
+                        "type": "string",
+                        "description": "Caption for the post (maximum 2200 characters)."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Location tag for the post."
+                    },
+                    "user_tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of users to tag in the post."
+                    },
+                    "is_sensitive": {
+                        "type": "boolean",
+                        "description": "Flag to mark content as sensitive.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "media_urls",
+                    "caption",
+                    "location",
+                    "user_tags"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_instagram_comment",
+            "description": "Post a comment on a specified Instagram post.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "post_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the Instagram post to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Enter the text content of the comment (maximum 2200 characters).",
+                        "maxLength": 2200
+                    },
+                    "reply_to_comment_id": {
+                        "type": "string",
+                        "description": "Provide the ID of the comment to reply to."
+                    }
+                },
+                "required": [
+                    "post_id",
+                    "content",
+                    "reply_to_comment_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_weibo",
+            "description": "Post content on the Weibo platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "description": "Enter the text content of the post (maximum 2000 characters)."
+                    },
+                    "media_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Provide a list of media URLs to attach (maximum 9 images or 1 video).",
+                        "maxItems": 9
+                    },
+                    "topics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specify a list of hashtag topics."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Enter a location tag for the post."
+                    },
+                    "is_sensitive": {
+                        "type": "boolean",
+                        "description": "Set to true to mark content as sensitive.",
+                        "default": false
+                    },
+                    "visible_to": {
+                        "type": "string",
+                        "description": "Choose the visibility setting for the post.",
+                        "enum": [
+                            "public",
+                            "private",
+                            "friends"
+                        ],
+                        "default": "public"
+                    }
+                },
+                "required": [
+                    "content",
+                    "media_urls",
+                    "topics",
+                    "location"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_weibo_comment",
+            "description": "Post a comment on a Weibo post.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "post_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the Weibo post to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the text content of the comment (maximum 1000 characters)."
+                    },
+                    "media_urls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List the media URLs to attach (maximum 9 images).",
+                        "maxItems": 9
+                    },
+                    "reply_to_comment_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the comment being replied to."
+                    }
+                },
+                "required": [
+                    "post_id",
+                    "content",
+                    "media_urls",
+                    "reply_to_comment_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_tiktok",
+            "description": "Post a video to the TikTok platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_url": {
+                        "type": "string",
+                        "description": "Provide the URL of the video file (.mp4 or .mov)."
+                    },
+                    "caption": {
+                        "type": "string",
+                        "description": "Enter a caption for the video (maximum 150 characters)."
+                    },
+                    "sound_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the background sound to use."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List hashtags for the video."
+                    },
+                    "allow_comments": {
+                        "type": "boolean",
+                        "description": "Set whether to allow comments on the video.",
+                        "default": true
+                    },
+                    "allow_duet": {
+                        "type": "boolean",
+                        "description": "Set whether to allow duets of the video.",
+                        "default": true
+                    },
+                    "allow_stitch": {
+                        "type": "boolean",
+                        "description": "Set whether to allow stitching the video.",
+                        "default": true
+                    }
+                },
+                "required": [
+                    "video_url",
+                    "caption",
+                    "sound_id",
+                    "tags"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_tiktok_comment",
+            "description": "Post a comment on a TikTok video.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the TikTok video to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the text content of the comment (maximum 150 characters).",
+                        "maxLength": 150
+                    },
+                    "reply_to_comment_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the comment to reply to."
+                    }
+                },
+                "required": [
+                    "video_id",
+                    "content",
+                    "reply_to_comment_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_youtube_video",
+            "description": "Upload a video to the YouTube platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_url": {
+                        "type": "string",
+                        "description": "Provide the URL of the video file."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Set the video title (maximum 100 characters)."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Set the video description (maximum 5000 characters)."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List video tags (total maximum 500 characters)."
+                    },
+                    "category_id": {
+                        "type": "string",
+                        "description": "Specify the video category ID.",
+                        "default": "22"
+                    },
+                    "privacy_status": {
+                        "type": "string",
+                        "description": "Set the privacy setting for the video.",
+                        "enum": [
+                            "public",
+                            "unlisted",
+                            "private"
+                        ],
+                        "default": "public"
+                    },
+                    "made_for_kids": {
+                        "type": "boolean",
+                        "description": "Indicate whether the video is made for kids.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "video_url",
+                    "title",
+                    "description",
+                    "tags"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_youtube_comment",
+            "description": "Post a comment on a YouTube video.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the YouTube video to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the text content of the comment (maximum 10000 characters).",
+                        "maxLength": 10000
+                    },
+                    "reply_to_comment_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the comment to reply to."
+                    }
+                },
+                "required": [
+                    "video_id",
+                    "content"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_bilibili_video",
+            "description": "Upload a video to the Bilibili platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_url": {
+                        "type": "string",
+                        "description": "Provide the URL of the video file."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Enter the video title (maximum 80 characters)."
+                    },
+                    "partition_id": {
+                        "type": "string",
+                        "description": "Specify the video partition or category ID."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Enter the video description (maximum 2000 characters)."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List up to 12 video tags."
+                    },
+                    "cover_url": {
+                        "type": "string",
+                        "description": "Provide the URL of the video cover image."
+                    },
+                    "copyright_type": {
+                        "type": "integer",
+                        "description": "Select the copyright type (1: Original, 2: Repost).",
+                        "enum": [
+                            1,
+                            2
+                        ],
+                        "default": 1
+                    },
+                    "thread_id": {
+                        "type": "string",
+                        "description": "Specify the series or collection ID for the video."
+                    }
+                },
+                "required": [
+                    "video_url",
+                    "title",
+                    "partition_id",
+                    "description",
+                    "tags",
+                    "cover_url",
+                    "thread_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "post_bilibili_comment",
+            "description": "Post a comment on a Bilibili video.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "video_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the Bilibili video to comment on."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Enter the text content of the comment (maximum 1000 characters)."
+                    },
+                    "reply_to_comment_id": {
+                        "type": "string",
+                        "description": "Provide the ID of the comment being replied to."
+                    },
+                    "include_danmaku": {
+                        "type": "boolean",
+                        "description": "Indicate whether to send the comment as danmaku (bullet comment).",
+                        "default": false
+                    },
+                    "danmaku_settings": {
+                        "type": "object",
+                        "description": "Configure settings for danmaku if include_danmaku is true.",
+                        "properties": {
+                            "position": {
+                                "type": "string",
+                                "description": "Select the position type of danmaku.",
+                                "enum": [
+                                    "scroll",
+                                    "top",
+                                    "bottom"
+                                ],
+                                "default": "scroll"
+                            },
+                            "color": {
+                                "type": "string",
+                                "description": "Set the color of danmaku text in hex format.",
+                                "default": "#FFFFFF"
+                            },
+                            "time": {
+                                "type": "number",
+                                "description": "Specify the timestamp in the video where danmaku appears.",
+                                "default": 0
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "video_id",
+                    "content",
+                    "reply_to_comment_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_twitter_profile",
+            "description": "Get detailed profile information for a Twitter/X user.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "Specify the user ID or username to fetch the profile for."
+                    },
+                    "include_pinned_tweet": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include the user's pinned tweet.",
+                        "default": false
+                    },
+                    "include_metrics": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include user metrics such as followers and following.",
+                        "default": true
+                    }
+                },
+                "required": [
+                    "user_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_twitter_content",
+            "description": "Search for users or tweets on Twitter/X platform",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Provide the search query string"
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Specify the type of content to search for",
+                        "enum": [
+                            "users",
+                            "tweets",
+                            "mixed"
+                        ],
+                        "default": "mixed"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply optional search filters",
+                        "properties": {
+                            "language": {
+                                "type": "string",
+                                "description": "Filter results by language (e.g., 'en', 'es')"
+                            },
+                            "start_time": {
+                                "type": "string",
+                                "description": "Set the start time for results (ISO 8601 format)"
+                            },
+                            "end_time": {
+                                "type": "string",
+                                "description": "Set the end time for results (ISO 8601 format)"
+                            }
+                        },
+                        "required": []
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Set the maximum number of results to return",
+                        "default": 20,
+                        "minimum": 1,
+                        "maximum": 100
+                    },
+                    "next_token": {
+                        "type": "string",
+                        "description": "Provide the token for getting the next page of results"
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_instagram_profile",
+            "description": "Get detailed Instagram user profile information including stories and business metrics if requested.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "Specify the Instagram user ID or username."
+                    },
+                    "include_stories": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include stories and highlights information.",
+                        "default": false
+                    },
+                    "include_business_metrics": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include business account metrics.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "user_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_instagram_content",
+            "description": "Search Instagram for users, hashtags, or places.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Provide the search query string."
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Specify the type of content to search for.",
+                        "enum": [
+                            "top",
+                            "users",
+                            "tags",
+                            "places"
+                        ],
+                        "default": "top"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply optional search filters.",
+                        "properties": {
+                            "location": {
+                                "type": "string",
+                                "description": "Filter results by location."
+                            },
+                            "date_range": {
+                                "type": "string",
+                                "description": "Filter results by date range."
+                            }
+                        }
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Set the maximum number of results to return.",
+                        "default": 20
+                    },
+                    "next_token": {
+                        "type": "string",
+                        "description": "Provide a token for pagination."
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_tiktok_profile",
+            "description": "Retrieve detailed TikTok user profile information, including live status and commerce info.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "Specify the TikTok user ID or username."
+                    },
+                    "include_live_status": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include live streaming status and metrics.",
+                        "default": false
+                    },
+                    "include_commerce_info": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include commerce/shop information.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "user_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_tiktok_content",
+            "description": "Search TikTok for users, videos, music, or hashtags.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Provide the search query string."
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Specify the type of content to search for.",
+                        "enum": [
+                            "general",
+                            "user",
+                            "video",
+                            "music",
+                            "hashtag"
+                        ],
+                        "default": "general"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply optional search filters.",
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "description": "Filter results by region code."
+                            },
+                            "duration": {
+                                "type": "string",
+                                "description": "Filter results by video duration."
+                            }
+                        }
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Set the maximum number of results to return.",
+                        "default": 20
+                    },
+                    "cursor": {
+                        "type": "string",
+                        "description": "Provide a cursor for pagination."
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_youtube_content",
+            "description": "Search YouTube for videos, channels, or playlists.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Provide the search query string."
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Specify the type of content to search for.",
+                        "enum": [
+                            "mixed",
+                            "video",
+                            "channel",
+                            "playlist"
+                        ],
+                        "default": "mixed"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply optional search filters.",
+                        "properties": {
+                            "region": {
+                                "type": "string",
+                                "description": "Filter results by region code."
+                            },
+                            "upload_date": {
+                                "type": "string",
+                                "description": "Filter results by upload date."
+                            },
+                            "duration": {
+                                "type": "string",
+                                "description": "Filter results by video duration."
+                            }
+                        },
+                        "required": [
+                            "region",
+                            "upload_date",
+                            "duration"
+                        ]
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Set the maximum number of results to return.",
+                        "default": 20
+                    },
+                    "page_token": {
+                        "type": "string",
+                        "description": "Provide the token for pagination."
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_bilibili_profile",
+            "description": "Get detailed Bilibili user profile information including live streaming and bangumi watching status.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "description": "Provide the Bilibili user ID (mid)."
+                    },
+                    "include_live": {
+                        "type": "boolean",
+                        "description": "Specify whether to include live streaming status and information.",
+                        "default": false
+                    },
+                    "include_bangumi": {
+                        "type": "boolean",
+                        "description": "Specify whether to include anime/bangumi watching status.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "user_id"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_bilibili_content",
+            "description": "Search Bilibili for videos, users, live streams, articles, or anime.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Enter the search query string."
+                    },
+                    "search_type": {
+                        "type": "string",
+                        "description": "Specify the type of content to search for.",
+                        "enum": [
+                            "all",
+                            "video",
+                            "user",
+                            "live",
+                            "article",
+                            "bangumi"
+                        ],
+                        "default": "all"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Provide optional search filters.",
+                        "properties": {
+                            "order": {
+                                "type": "string",
+                                "description": "Set the sort order for results.",
+                                "enum": [
+                                    "default",
+                                    "pubdate",
+                                    "view",
+                                    "danmaku",
+                                    "reply",
+                                    "favorite",
+                                    "coin",
+                                    "share"
+                                ]
+                            },
+                            "duration": {
+                                "type": "string",
+                                "description": "Apply a video duration filter (0: all, 1: <10min, 2: 10-30min, 3: 30-60min, 4: >60min).",
+                                "enum": [
+                                    "0",
+                                    "1",
+                                    "2",
+                                    "3",
+                                    "4"
+                                ]
+                            },
+                            "partition": {
+                                "type": "string",
+                                "description": "Filter results by content partition or category."
+                            }
+                        }
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Set the maximum number of results per page.",
+                        "default": 20
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Specify the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "query"
+                ]
+            }
+        },
+        "category": "Social",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    }
+]

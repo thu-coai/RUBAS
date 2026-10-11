@@ -1,0 +1,323 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "create_note",
+            "description": "Create a new note with a title, content, and optional attachments.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the note."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "The content of the note."
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Local file paths of attachments (optional)."
+                    },
+                    "notebook_id": {
+                        "type": "string",
+                        "description": "The ID of the notebook to add the note to (optional)."
+                    }
+                },
+                "required": [
+                    "title",
+                    "content"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_note",
+            "description": "Retrieve the content of a note by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "note_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the note."
+                    }
+                },
+                "required": [
+                    "note_id"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "update_note",
+            "description": "Update the content, title, or attachments of a note by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "note_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the note."
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "The new title of the note (optional)."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "The new content of the note (optional)."
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Local file paths of new attachments (optional)."
+                    }
+                },
+                "required": [
+                    "note_id"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "delete_note",
+            "description": "Delete a note by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "note_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the note."
+                    }
+                },
+                "required": [
+                    "note_id"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_notebook",
+            "description": "Create a new notebook with a name.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the notebook."
+                    }
+                },
+                "required": [
+                    "name"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_notebook",
+            "description": "Retrieve the content of a notebook by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "notebook_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the notebook."
+                    }
+                },
+                "required": [
+                    "notebook_id"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "update_notebook",
+            "description": "Update the name of a notebook by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "notebook_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the notebook."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The new name of the notebook."
+                    }
+                },
+                "required": [
+                    "notebook_id",
+                    "name"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "delete_notebook",
+            "description": "Delete a notebook by its unique identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "notebook_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the notebook."
+                    }
+                },
+                "required": [
+                    "notebook_id"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_notes",
+            "description": "Search for notes by keywords, tags, or notebook ID.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keywords": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of keywords to search for in the note title or content."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of tags to search for in the note tags."
+                    },
+                    "notebook_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the notebook to search within."
+                    },
+                    "max_results": {
+                        "type": "integer",
+                        "description": "The maximum number of results to return.",
+                        "default": 10,
+                        "minimum": 1
+                    }
+                },
+                "required": []
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "manage_note_sharing_level",
+            "description": "Alter the note-sharing permissions for a specific user identified by their email address.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "note_id": {
+                        "type": "string",
+                        "description": "The unique identifier of the note that the permissions will be changed for."
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "The email address of the user whose note-sharing permissions will be altered."
+                    },
+                    "level": {
+                        "type": "string",
+                        "description": "The level of sharing, can be 'not_accessible', 'read_only', or 'can_edit'.",
+                        "enum": [
+                            "not_accessible",
+                            "read_only",
+                            "can_edit"
+                        ]
+                    }
+                },
+                "required": [
+                    "note_id",
+                    "email",
+                    "level"
+                ]
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Sensitive",
+        "source": "InjectAgent"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_notebooks",
+            "description": "Search for notebooks by keywords or name.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keywords": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of keywords to search for in the notebook name."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the notebook to search for."
+                    },
+                    "max_results": {
+                        "type": "integer",
+                        "description": "The maximum number of results to return.",
+                        "default": 10
+                    }
+                },
+                "required": []
+            }
+        },
+        "category": "EvernoteManager",
+        "tool_type": "Benign",
+        "source": "InjectAgent"
+    }
+]

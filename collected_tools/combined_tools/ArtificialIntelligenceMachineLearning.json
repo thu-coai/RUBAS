@@ -1,0 +1,398 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "midjourney_create_image",
+            "description": "Generate high-quality images using Midjourney's advanced AI model. Creates 4 image variations based on the provided prompt.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "Provide a detailed description of the image to generate."
+                    },
+                    "style_version": {
+                        "type": "string",
+                        "description": "Select the Midjourney model version to use for generation.",
+                        "enum": [
+                            "V5",
+                            "V6",
+                            "niji"
+                        ],
+                        "default": "V6"
+                    },
+                    "aspect_ratio": {
+                        "type": "string",
+                        "description": "Specify the output image aspect ratio.",
+                        "default": "1:1"
+                    },
+                    "quality": {
+                        "type": "number",
+                        "description": "Set the quality level affecting generation time and detail (0.25-2.0).",
+                        "minimum": 0.25,
+                        "maximum": 2.0,
+                        "default": 1.0
+                    },
+                    "style_params": {
+                        "type": "object",
+                        "description": "Provide optional parameters for fine-tuning the style."
+                    }
+                },
+                "required": [
+                    "prompt"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "stable_diffusion_generate",
+            "description": "Generate high-quality images using Stable Diffusion with advanced customization options and fine-grained control.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "Text description of the desired image"
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "Stable Diffusion model version to use",
+                        "default": "sd_xl_base_1.0"
+                    },
+                    "negative_prompt": {
+                        "type": "string",
+                        "description": "Elements to exclude from the generated image"
+                    },
+                    "steps": {
+                        "type": "integer",
+                        "description": "Number of denoising steps for generation",
+                        "minimum": 1,
+                        "maximum": 150,
+                        "default": 50
+                    },
+                    "cfg_scale": {
+                        "type": "number",
+                        "description": "Classifier Free Guidance scale - controls how closely the image follows the prompt",
+                        "minimum": 1,
+                        "maximum": 30,
+                        "default": 7.5
+                    },
+                    "seed": {
+                        "type": "integer",
+                        "description": "Random seed for reproducible generations"
+                    },
+                    "width": {
+                        "type": "integer",
+                        "description": "Output image width",
+                        "default": 1024
+                    },
+                    "height": {
+                        "type": "integer",
+                        "description": "Output image height",
+                        "default": 1024
+                    },
+                    "sampler": {
+                        "type": "string",
+                        "description": "Sampling algorithm for generation",
+                        "default": "DPM++ 2M Karras"
+                    }
+                },
+                "required": [
+                    "prompt",
+                    "negative_prompt",
+                    "seed"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "runway_generate_video",
+            "description": "Create an AI-generated video using a text prompt, image, or existing video. Specify generation mode, duration, frame rate, style, and other parameters.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "Provide a text description for video generation."
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Select the generation mode: create from text, animate an image, or transform a video.",
+                        "enum": [
+                            "text_to_video",
+                            "image_to_video",
+                            "video_to_video"
+                        ],
+                        "default": "text_to_video"
+                    },
+                    "duration": {
+                        "type": "number",
+                        "description": "Set the video duration in seconds.",
+                        "minimum": 1,
+                        "maximum": 18,
+                        "default": 4.0
+                    },
+                    "fps": {
+                        "type": "integer",
+                        "description": "Choose frames per second for the output video.",
+                        "enum": [
+                            24,
+                            30
+                        ],
+                        "default": 24
+                    },
+                    "style_preset": {
+                        "type": "string",
+                        "description": "Specify the visual style preset for the video.",
+                        "default": "cinematic"
+                    },
+                    "num_frames": {
+                        "type": "integer",
+                        "description": "Set the total number of frames in the output video."
+                    },
+                    "motion_bucket_id": {
+                        "type": "integer",
+                        "description": "Control the intensity of motion in the generated video.",
+                        "minimum": 1,
+                        "maximum": 255,
+                        "default": 127
+                    },
+                    "seed": {
+                        "type": "integer",
+                        "description": "Provide a random seed for reproducible video generation."
+                    }
+                },
+                "required": [
+                    "prompt",
+                    "num_frames",
+                    "seed"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "elevenlabs_text_to_speech",
+            "description": "Convert text to natural-sounding speech using ElevenLabs' advanced text-to-speech technology with customizable voice settings.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "description": "Provide the text content to convert to speech.",
+                        "maxLength": 2500
+                    },
+                    "voice_id": {
+                        "type": "string",
+                        "description": "Specify the identifier for the selected voice.",
+                        "default": "josh"
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "Select the text-to-speech model version.",
+                        "default": "eleven_multilingual_v2"
+                    },
+                    "stability": {
+                        "type": "number",
+                        "description": "Set the voice stability control (0-1).",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "default": 0.5
+                    },
+                    "similarity_boost": {
+                        "type": "number",
+                        "description": "Set the voice similarity enhancement factor (0-1).",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "default": 0.75
+                    },
+                    "style": {
+                        "type": "number",
+                        "description": "Set the speaking style intensity control (0-1).",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "default": 0.0
+                    },
+                    "use_speaker_boost": {
+                        "type": "boolean",
+                        "description": "Enable enhanced prosody and speaking characteristics.",
+                        "default": true
+                    }
+                },
+                "required": [
+                    "text"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "dalle_edit_image",
+            "description": "Edit an image using DALL-E AI with a text prompt and optional mask. Provide a source image URL and a detailed description of the desired edits.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "image_url": {
+                        "type": "string",
+                        "description": "URL of the source image to edit",
+                        "format": "uri"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "description": "Detailed description of the desired edits"
+                    },
+                    "mask_url": {
+                        "type": "string",
+                        "description": "Optional URL of mask image; transparent areas indicate where to edit",
+                        "format": "uri"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "Dimensions of the output image",
+                        "enum": [
+                            "1024x1024",
+                            "1024x1792",
+                            "1792x1024"
+                        ],
+                        "default": "1024x1024"
+                    },
+                    "quality": {
+                        "type": "string",
+                        "description": "Quality level of the generated image",
+                        "enum": [
+                            "standard",
+                            "hd"
+                        ],
+                        "default": "standard"
+                    },
+                    "model": {
+                        "type": "string",
+                        "description": "DALL-E model version to use",
+                        "enum": [
+                            "dall-e-2",
+                            "dall-e-3"
+                        ],
+                        "default": "dall-e-3"
+                    },
+                    "n": {
+                        "type": "integer",
+                        "description": "Number of images to generate",
+                        "minimum": 1,
+                        "maximum": 4,
+                        "default": 1
+                    }
+                },
+                "required": [
+                    "image_url",
+                    "prompt"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "stability_edit_image",
+            "description": "Edit an image using Stability AI's models. Specify the source image URL and a prompt describing the desired changes. Choose the edit mode and optional parameters for advanced control.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "image_url": {
+                        "type": "string",
+                        "description": "Provide the URL of the source image to edit.",
+                        "format": "uri"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "description": "Describe the desired changes to apply to the image."
+                    },
+                    "edit_mode": {
+                        "type": "string",
+                        "description": "Select the type of edit operation to perform.",
+                        "enum": [
+                            "img2img",
+                            "inpaint",
+                            "controlnet"
+                        ],
+                        "default": "img2img"
+                    },
+                    "control_mode": {
+                        "type": "string",
+                        "description": "Specify the ControlNet conditioning mode if using controlnet edit_mode.",
+                        "enum": [
+                            "canny",
+                            "depth",
+                            "pose",
+                            "seg",
+                            "hed",
+                            "scribble",
+                            "normal"
+                        ],
+                        "default": null
+                    },
+                    "strength": {
+                        "type": "number",
+                        "description": "Set how much to transform the image (0 = minimal, 1 = maximum).",
+                        "minimum": 0,
+                        "maximum": 1,
+                        "default": 0.75
+                    },
+                    "guidance_scale": {
+                        "type": "number",
+                        "description": "Set how strictly to follow the prompt.",
+                        "minimum": 1,
+                        "maximum": 20,
+                        "default": 7.5
+                    },
+                    "seed": {
+                        "type": "integer",
+                        "description": "Set a random seed for reproducible results.",
+                        "default": null
+                    },
+                    "steps": {
+                        "type": "integer",
+                        "description": "Set the number of diffusion steps.",
+                        "minimum": 10,
+                        "maximum": 150,
+                        "default": 30
+                    },
+                    "control_guidance": {
+                        "type": "number",
+                        "description": "Set the ControlNet guidance strength.",
+                        "minimum": 0,
+                        "maximum": 2,
+                        "default": 1.0
+                    }
+                },
+                "required": [
+                    "image_url",
+                    "prompt"
+                ]
+            }
+        },
+        "category": "ArtificialIntelligenceMachineLearning",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    }
+]

@@ -1,0 +1,556 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_amazon",
+            "description": "Place an order on Amazon with support for Prime shipping and gift options.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "type": "string",
+                        "description": "Specify the product ID of the item to order."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "Indicate the number of items to order."
+                    },
+                    "shipping_address": {
+                        "type": "string",
+                        "description": "Provide the delivery address for the order."
+                    },
+                    "shipping_method": {
+                        "type": "string",
+                        "description": "Select the shipping method to use.",
+                        "enum": [
+                            "standard",
+                            "expedited",
+                            "prime"
+                        ],
+                        "default": "standard"
+                    },
+                    "gift": {
+                        "type": "boolean",
+                        "description": "Specify whether this is a gift order.",
+                        "default": false
+                    },
+                    "gift_message": {
+                        "type": "string",
+                        "description": "Enter an optional gift message for gift orders."
+                    },
+                    "prime": {
+                        "type": "boolean",
+                        "description": "Indicate whether the user has Prime membership.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "item_id",
+                    "quantity",
+                    "shipping_address",
+                    "gift_message"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_temu",
+            "description": "Place an order on Temu. Specify product ID, quantity, delivery address, and optionally select color, size, and shipping insurance.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "type": "string",
+                        "description": "Specify the product ID of the item to order."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "Specify the number of items to order."
+                    },
+                    "shipping_address": {
+                        "type": "string",
+                        "description": "Provide the delivery address for the order."
+                    },
+                    "color": {
+                        "type": "string",
+                        "description": "Select the color variant of the product."
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "Select the size variant of the product."
+                    },
+                    "insurance": {
+                        "type": "boolean",
+                        "description": "Indicate whether to add shipping insurance.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "item_id",
+                    "quantity",
+                    "shipping_address",
+                    "color",
+                    "size"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_ebay",
+            "description": "Place an order on eBay, supporting Best Offer and multiple payment methods.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "type": "string",
+                        "description": "Specify the product ID of the item to order."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "Indicate the number of items to order."
+                    },
+                    "shipping_address": {
+                        "type": "string",
+                        "description": "Provide the delivery address for the order."
+                    },
+                    "offer_price": {
+                        "type": "number",
+                        "description": "Set the price offered for negotiation if the item supports Best Offer."
+                    },
+                    "shipping_option": {
+                        "type": "string",
+                        "description": "Choose the shipping option to use.",
+                        "enum": [
+                            "standard",
+                            "expedited"
+                        ],
+                        "default": "standard"
+                    },
+                    "payment_method": {
+                        "type": "string",
+                        "description": "Select the payment method to use.",
+                        "enum": [
+                            "paypal",
+                            "card"
+                        ],
+                        "default": "paypal"
+                    }
+                },
+                "required": [
+                    "item_id",
+                    "quantity",
+                    "shipping_address",
+                    "offer_price"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_taobao",
+            "description": "Place an order on Taobao, redeem points, and send a message to the seller.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "item_id": {
+                        "type": "string",
+                        "description": "Specify the product ID of the item to order."
+                    },
+                    "quantity": {
+                        "type": "integer",
+                        "description": "Indicate the number of items to order."
+                    },
+                    "shipping_address": {
+                        "type": "string",
+                        "description": "Provide the delivery address for the order."
+                    },
+                    "color_size": {
+                        "type": "string",
+                        "description": "Select the color and size (e.g., 'Red,XL')."
+                    },
+                    "delivery_option": {
+                        "type": "string",
+                        "description": "Choose the delivery option.",
+                        "enum": [
+                            "standard",
+                            "express"
+                        ],
+                        "default": "standard"
+                    },
+                    "message_to_seller": {
+                        "type": "string",
+                        "description": "Write an optional message to the seller."
+                    },
+                    "use_points": {
+                        "type": "boolean",
+                        "description": "Indicate whether to use Taobao points for a discount.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "item_id",
+                    "quantity",
+                    "shipping_address",
+                    "color_size",
+                    "message_to_seller"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_products_amazon",
+            "description": "Search for products on Amazon platform. Specify keyword, category, and filters to find items.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "Specify the search keyword to find products."
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "Specify the product category to filter results."
+                    },
+                    "prime_only": {
+                        "type": "boolean",
+                        "description": "Show only Prime-eligible items.",
+                        "default": false
+                    },
+                    "min_rating": {
+                        "type": "number",
+                        "description": "Set the minimum rating score (1-5).",
+                        "minimum": 1,
+                        "maximum": 5
+                    },
+                    "price_range": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "description": "Specify [min_price, max_price] for filtering."
+                    },
+                    "sort_by": {
+                        "type": "string",
+                        "description": "Choose the method to sort results.",
+                        "enum": [
+                            "relevance",
+                            "price_asc",
+                            "price_desc",
+                            "rating",
+                            "reviews"
+                        ],
+                        "default": "relevance"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply additional filters for the search.",
+                        "properties": {
+                            "brand": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "condition": {
+                                "type": "string",
+                                "enum": [
+                                    "new",
+                                    "used",
+                                    "renewed"
+                                ]
+                            },
+                            "shipping_speed": {
+                                "type": "string",
+                                "enum": [
+                                    "same_day",
+                                    "one_day",
+                                    "two_day"
+                                ]
+                            }
+                        }
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Set the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    },
+                    "page_size": {
+                        "type": "integer",
+                        "description": "Set the number of results per page.",
+                        "default": 20,
+                        "minimum": 1,
+                        "maximum": 100
+                    }
+                },
+                "required": [
+                    "keyword",
+                    "category",
+                    "min_rating",
+                    "price_range"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_products_temu",
+            "description": "Search for products on Temu platform. Specify query and filters to find relevant items.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Enter a search query to find products."
+                    },
+                    "category_id": {
+                        "type": "string",
+                        "description": "Specify a category ID to filter products."
+                    },
+                    "sort_by": {
+                        "type": "string",
+                        "description": "Select a method to sort results.",
+                        "enum": [
+                            "recommended",
+                            "price_low",
+                            "price_high",
+                            "orders",
+                            "newest"
+                        ],
+                        "default": "recommended"
+                    },
+                    "min_price": {
+                        "type": "number",
+                        "description": "Set a minimum price filter."
+                    },
+                    "max_price": {
+                        "type": "number",
+                        "description": "Set a maximum price filter."
+                    },
+                    "shipping_region": {
+                        "type": "string",
+                        "description": "Enter a shipping region code (e.g., US, UK).",
+                        "default": "US"
+                    },
+                    "free_shipping": {
+                        "type": "boolean",
+                        "description": "Show only items with free shipping.",
+                        "default": false
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Specify the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "query",
+                    "category_id",
+                    "min_price",
+                    "max_price"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_products_ebay",
+            "description": "Search for products on eBay platform, including both auction and fixed-price items.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "search_term": {
+                        "type": "string",
+                        "description": "Specify the search term to find products."
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "Specify the item category."
+                    },
+                    "condition": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "new",
+                                "used",
+                                "not_specified"
+                            ]
+                        },
+                        "description": "List acceptable item conditions."
+                    },
+                    "min_price": {
+                        "type": "number",
+                        "description": "Set the minimum price filter."
+                    },
+                    "max_price": {
+                        "type": "number",
+                        "description": "Set the maximum price filter."
+                    },
+                    "buy_format": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "auction",
+                                "buy_it_now",
+                                "best_offer"
+                            ]
+                        },
+                        "description": "List acceptable buying formats."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Specify the item location."
+                    },
+                    "free_shipping": {
+                        "type": "boolean",
+                        "description": "Show only items with free shipping.",
+                        "default": false
+                    },
+                    "best_offer": {
+                        "type": "boolean",
+                        "description": "Show only items accepting Best Offer.",
+                        "default": false
+                    },
+                    "returns_accepted": {
+                        "type": "boolean",
+                        "description": "Show only items with returns accepted.",
+                        "default": false
+                    },
+                    "page_number": {
+                        "type": "integer",
+                        "description": "Set the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "search_term",
+                    "category",
+                    "condition",
+                    "min_price",
+                    "max_price",
+                    "buy_format",
+                    "location"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_products_taobao",
+            "description": "Search for products on Taobao platform, including both Taobao and Tmall items.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "Provide a search keyword to find products."
+                    },
+                    "cat": {
+                        "type": "string",
+                        "description": "Specify a category ID for filtering."
+                    },
+                    "sort": {
+                        "type": "string",
+                        "description": "Select a method to sort results.",
+                        "enum": [
+                            "default",
+                            "sales",
+                            "price_asc",
+                            "price_desc",
+                            "credit"
+                        ],
+                        "default": "default"
+                    },
+                    "price_range": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "description": "Provide an array of [min_price, max_price] for filtering."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Specify the item location (province/city)."
+                    },
+                    "delivery_time": {
+                        "type": "integer",
+                        "description": "Set the maximum delivery time in days.",
+                        "minimum": 1
+                    },
+                    "tmall_only": {
+                        "type": "boolean",
+                        "description": "Show only Tmall items.",
+                        "default": false
+                    },
+                    "has_coupon": {
+                        "type": "boolean",
+                        "description": "Show only items with coupons.",
+                        "default": false
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Set the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    },
+                    "page_size": {
+                        "type": "integer",
+                        "description": "Set the number of results per page.",
+                        "default": 20,
+                        "minimum": 1,
+                        "maximum": 100
+                    }
+                },
+                "required": [
+                    "keyword",
+                    "cat",
+                    "price_range",
+                    "location",
+                    "delivery_time"
+                ]
+            }
+        },
+        "category": "Ecommerce",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    }
+]

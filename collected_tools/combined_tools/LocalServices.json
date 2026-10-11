@@ -1,0 +1,561 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_meituan",
+            "description": "Place a food delivery order on Meituan platform.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "restaurant_id": {
+                        "type": "string",
+                        "description": "Specify the restaurant to order from."
+                    },
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "item_id": {
+                                    "type": "string",
+                                    "description": "Specify the menu item to order."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "Specify the quantity of the menu item.",
+                                    "minimum": 1
+                                }
+                            },
+                            "required": [
+                                "item_id",
+                                "quantity"
+                            ]
+                        },
+                        "description": "List of items to order."
+                    },
+                    "delivery_address": {
+                        "type": "string",
+                        "description": "Specify the delivery address."
+                    },
+                    "note_to_driver": {
+                        "type": "string",
+                        "description": "Provide special instructions for the delivery driver."
+                    },
+                    "contact_phone": {
+                        "type": "string",
+                        "description": "Provide a contact phone number."
+                    }
+                },
+                "required": [
+                    "restaurant_id",
+                    "items",
+                    "delivery_address"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_doordash",
+            "description": "Place a food delivery order on DoorDash platform with options for priority delivery and tipping.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "restaurant_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the restaurant."
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "Provide a list of items to order.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "item_id": {
+                                    "type": "string",
+                                    "description": "Specify the ID of the menu item."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "Specify the quantity of this item."
+                                },
+                                "customizations": {
+                                    "type": "object",
+                                    "description": "Provide customization options for this item."
+                                }
+                            },
+                            "required": [
+                                "item_id",
+                                "quantity"
+                            ]
+                        }
+                    },
+                    "delivery_address": {
+                        "type": "string",
+                        "description": "Specify the delivery address."
+                    },
+                    "tip_amount": {
+                        "type": "number",
+                        "description": "Set the tip amount for the dasher.",
+                        "default": 0
+                    },
+                    "delivery_instructions": {
+                        "type": "string",
+                        "description": "Provide special instructions for delivery."
+                    },
+                    "scheduled_time": {
+                        "type": "string",
+                        "description": "Schedule delivery for later (YYYY-MM-DD HH:MM)."
+                    },
+                    "no_contact_delivery": {
+                        "type": "boolean",
+                        "description": "Enable or disable no-contact delivery.",
+                        "default": true
+                    },
+                    "priority_delivery": {
+                        "type": "boolean",
+                        "description": "Enable or disable priority delivery.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "restaurant_id",
+                    "items",
+                    "delivery_address",
+                    "delivery_instructions",
+                    "scheduled_time"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_ubereats",
+            "description": "Place a food delivery order on Uber Eats with support for group orders and priority delivery.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "restaurant_id": {
+                        "type": "string",
+                        "description": "Specify the ID of the restaurant."
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "Provide a list of items to order.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "item_id": {
+                                    "type": "string",
+                                    "description": "Specify the ID of the menu item."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "Specify the quantity of this item."
+                                },
+                                "special_instructions": {
+                                    "type": "string",
+                                    "description": "Provide special instructions for this item."
+                                }
+                            },
+                            "required": [
+                                "item_id",
+                                "quantity"
+                            ]
+                        }
+                    },
+                    "delivery_address": {
+                        "type": "string",
+                        "description": "Specify the delivery address."
+                    },
+                    "tip_percent": {
+                        "type": "number",
+                        "description": "Set the tip percentage (0-30).",
+                        "default": 15.0
+                    },
+                    "delivery_notes": {
+                        "type": "string",
+                        "description": "Provide special instructions for delivery."
+                    },
+                    "schedule_for": {
+                        "type": "string",
+                        "description": "Schedule the delivery time (YYYY-MM-DD HH:MM)."
+                    },
+                    "priority": {
+                        "type": "boolean",
+                        "description": "Enable priority delivery.",
+                        "default": false
+                    },
+                    "group_order": {
+                        "type": "boolean",
+                        "description": "Specify whether this is a group order.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "restaurant_id",
+                    "items",
+                    "delivery_address"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "place_order_foodpanda",
+            "description": "Place a food delivery order on Foodpanda. Specify restaurant, items, delivery address, and optional voucher, remarks, schedule, payment method, and pro membership.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "restaurant_id": {
+                        "type": "string",
+                        "description": "Specify the restaurant ID."
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "List all items to order.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "item_id": {
+                                    "type": "string",
+                                    "description": "Specify the menu item ID."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "Specify the quantity for this item."
+                                },
+                                "add_ons": {
+                                    "type": "array",
+                                    "description": "List add-ons for this item."
+                                }
+                            },
+                            "required": [
+                                "item_id",
+                                "quantity"
+                            ]
+                        }
+                    },
+                    "delivery_address": {
+                        "type": "string",
+                        "description": "Specify the delivery address."
+                    },
+                    "voucher_code": {
+                        "type": "string",
+                        "description": "Enter a voucher code for discount."
+                    },
+                    "remarks": {
+                        "type": "string",
+                        "description": "Add delivery remarks."
+                    },
+                    "schedule_time": {
+                        "type": "string",
+                        "description": "Specify scheduled delivery time (YYYY-MM-DD HH:MM)."
+                    },
+                    "payment_method": {
+                        "type": "string",
+                        "description": "Choose payment method.",
+                        "enum": [
+                            "card",
+                            "cash"
+                        ],
+                        "default": "card"
+                    },
+                    "pro_member": {
+                        "type": "boolean",
+                        "description": "Indicate if user is a pro member.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "restaurant_id",
+                    "items",
+                    "delivery_address"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_merchant_meituan",
+            "description": "Search for merchants or stores on the Meituan platform, including restaurants, grocery stores, and pharmacies.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keyword": {
+                        "type": "string",
+                        "description": "Provide a search keyword to find merchants."
+                    },
+                    "location": {
+                        "type": "string",
+                        "description": "Specify the user's current location or delivery address."
+                    },
+                    "sort_by": {
+                        "type": "string",
+                        "description": "Select a method to sort results.",
+                        "enum": [
+                            "comprehensive",
+                            "distance",
+                            "rating",
+                            "sales"
+                        ],
+                        "default": "comprehensive"
+                    },
+                    "filters": {
+                        "type": "object",
+                        "description": "Apply additional filters for the search.",
+                        "properties": {
+                            "price_range": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "description": "Set minimum and maximum price range."
+                            },
+                            "cuisine_type": {
+                                "type": "string",
+                                "description": "Specify the type of cuisine or store category."
+                            },
+                            "delivery_time": {
+                                "type": "integer",
+                                "description": "Set the maximum delivery time in minutes."
+                            }
+                        },
+                        "required": [
+                            "price_range",
+                            "cuisine_type",
+                            "delivery_time"
+                        ]
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Set the page number for pagination.",
+                        "default": 1,
+                        "minimum": 1
+                    },
+                    "page_size": {
+                        "type": "integer",
+                        "description": "Set the number of results per page.",
+                        "default": 20,
+                        "minimum": 1,
+                        "maximum": 100
+                    }
+                },
+                "required": [
+                    "keyword",
+                    "location"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_merchant_doordash",
+            "description": "Search for merchants on DoorDash platform (restaurants, convenience stores, retail shops, etc.)",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Provide a search query to find merchants."
+                    },
+                    "address": {
+                        "type": "string",
+                        "description": "Specify the delivery address for searching nearby merchants."
+                    },
+                    "cuisine_type": {
+                        "type": "string",
+                        "description": "Indicate the type of cuisine or merchant category."
+                    },
+                    "price_range": {
+                        "type": "string",
+                        "description": "Select a price range category.",
+                        "enum": [
+                            "$",
+                            "$$",
+                            "$$$"
+                        ]
+                    },
+                    "dietary_preferences": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List dietary preferences (e.g., vegetarian, vegan, gluten-free)."
+                    },
+                    "rating_min": {
+                        "type": "number",
+                        "description": "Set the minimum rating score (1-5).",
+                        "minimum": 1,
+                        "maximum": 5
+                    },
+                    "delivery_time_max": {
+                        "type": "integer",
+                        "description": "Specify the maximum delivery time in minutes."
+                    },
+                    "top_rated_only": {
+                        "type": "boolean",
+                        "description": "Show only top-rated merchants.",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "query",
+                    "address",
+                    "cuisine_type",
+                    "price_range",
+                    "dietary_preferences",
+                    "rating_min",
+                    "delivery_time_max"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_merchant_ubereats",
+            "description": "Search for merchants on the Uber Eats platform, including restaurants, grocery stores, and packaged goods.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "search_term": {
+                        "type": "string",
+                        "description": "Provide a search term to find merchants."
+                    },
+                    "delivery_location": {
+                        "type": "string",
+                        "description": "Specify the delivery location for the search."
+                    },
+                    "sort_by": {
+                        "type": "string",
+                        "description": "Select a method to sort results.",
+                        "enum": [
+                            "recommended",
+                            "rating",
+                            "delivery_time",
+                            "price"
+                        ],
+                        "default": "recommended"
+                    },
+                    "price_level": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 4
+                        },
+                        "description": "List price levels (1-4) to filter merchants."
+                    },
+                    "dietary_restrictions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List dietary restrictions to filter merchants."
+                    },
+                    "max_delivery_fee": {
+                        "type": "number",
+                        "description": "Set the maximum delivery fee."
+                    },
+                    "max_delivery_time": {
+                        "type": "integer",
+                        "description": "Set the maximum delivery time in minutes."
+                    }
+                },
+                "required": [
+                    "search_term",
+                    "delivery_location",
+                    "price_level",
+                    "dietary_restrictions",
+                    "max_delivery_fee",
+                    "max_delivery_time"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_merchant_foodpanda",
+            "description": "Search for merchants on Foodpanda platform (restaurants, grocery stores, convenience stores, etc.)",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "search_text": {
+                        "type": "string",
+                        "description": "Enter search text to find merchants"
+                    },
+                    "area": {
+                        "type": "string",
+                        "description": "Specify delivery area for the search"
+                    },
+                    "cuisine": {
+                        "type": "string",
+                        "description": "Specify type of cuisine or merchant category"
+                    },
+                    "min_order_value": {
+                        "type": "number",
+                        "description": "Set minimum order value filter"
+                    },
+                    "delivery_time": {
+                        "type": "string",
+                        "description": "Enter preferred delivery time (format: YYYY-MM-DD HH:MM)"
+                    },
+                    "vouchers_only": {
+                        "type": "boolean",
+                        "description": "Show only merchants with active vouchers",
+                        "default": false
+                    },
+                    "free_delivery": {
+                        "type": "boolean",
+                        "description": "Show only merchants with free delivery",
+                        "default": false
+                    },
+                    "page": {
+                        "type": "integer",
+                        "description": "Set page number for pagination",
+                        "default": 1,
+                        "minimum": 1
+                    }
+                },
+                "required": [
+                    "search_text",
+                    "area",
+                    "cuisine",
+                    "min_order_value",
+                    "delivery_time"
+                ]
+            }
+        },
+        "category": "LocalServices",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    }
+]

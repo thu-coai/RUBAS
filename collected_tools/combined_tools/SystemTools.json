@@ -1,0 +1,533 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "execute_command",
+            "description": "Execute a shell command with specified parameters. Supports timeout and environment configuration.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "command": {
+                        "type": "string",
+                        "description": "Specify the shell command to execute."
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "Set the maximum execution time in seconds."
+                    },
+                    "working_dir": {
+                        "type": "string",
+                        "description": "Set the working directory for command execution."
+                    },
+                    "env_vars": {
+                        "type": "object",
+                        "description": "Provide additional environment variables as key-value pairs."
+                    }
+                },
+                "required": [
+                    "command",
+                    "timeout",
+                    "working_dir",
+                    "env_vars"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "file_operation",
+            "description": "Perform file operations such as read, write, copy, move, and delete.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "read",
+                            "write",
+                            "copy",
+                            "move",
+                            "delete"
+                        ],
+                        "description": "Specify the type of file operation to perform."
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "Specify the path to the file to operate on."
+                    },
+                    "destination": {
+                        "type": "string",
+                        "description": "Specify the destination path for copy or move operations."
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "Provide the content to write for write operations."
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "Specify the file mode for read or write operations (e.g., 'r', 'w', 'a')."
+                    }
+                },
+                "required": [
+                    "operation",
+                    "path"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "system_info",
+            "description": "Get detailed system information including CPU, memory, disk, and network status.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "process_management",
+            "description": "Manage system processes: list processes, terminate a process, or retrieve process information.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "list",
+                            "kill",
+                            "info"
+                        ],
+                        "description": "Specify the process operation to perform."
+                    },
+                    "pid": {
+                        "type": "integer",
+                        "description": "Provide the process ID for targeted operations."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Provide the process name for filtering or retrieving information."
+                    },
+                    "signal": {
+                        "type": "integer",
+                        "description": "Specify the signal number for the kill operation. Default is 15 (SIGTERM)."
+                    }
+                },
+                "required": [
+                    "operation",
+                    "pid",
+                    "name",
+                    "signal"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "git_operation",
+            "description": "Perform Git operations such as clone, pull, push, commit, status, and log.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "clone",
+                            "pull",
+                            "push",
+                            "commit",
+                            "status",
+                            "log"
+                        ],
+                        "description": "Specify the Git operation to perform."
+                    },
+                    "repository_path": {
+                        "type": "string",
+                        "description": "Provide the path to the Git repository."
+                    },
+                    "args": {
+                        "type": "object",
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "description": "Provide the repository URL for the clone operation."
+                            },
+                            "message": {
+                                "type": "string",
+                                "description": "Provide the commit message for the commit operation."
+                            },
+                            "branch": {
+                                "type": "string",
+                                "description": "Provide the branch name for the push operation."
+                            }
+                        },
+                        "description": "Supply additional arguments for specific operations."
+                    }
+                },
+                "required": [
+                    "operation",
+                    "repository_path"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "docker_operation",
+            "description": "Perform Docker operations such as run, build, ps, and logs.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "run",
+                            "build",
+                            "ps",
+                            "logs"
+                        ],
+                        "description": "Specify the Docker operation to perform."
+                    },
+                    "target": {
+                        "type": "string",
+                        "description": "Provide the container or image name or ID."
+                    },
+                    "args": {
+                        "type": "object",
+                        "properties": {
+                            "dockerfile": {
+                                "type": "string",
+                                "description": "Specify the path to the Dockerfile for build operation."
+                            },
+                            "ports": {
+                                "type": "object",
+                                "description": "Define port mappings for run operation."
+                            },
+                            "environment": {
+                                "type": "object",
+                                "description": "Set environment variables for run operation."
+                            },
+                            "volumes": {
+                                "type": "array",
+                                "description": "List volume mappings for run operation."
+                            },
+                            "network": {
+                                "type": "string",
+                                "description": "Specify network configuration for run operation."
+                            },
+                            "tag": {
+                                "type": "string",
+                                "description": "Provide image tag for build operation."
+                            }
+                        },
+                        "description": "Provide additional arguments for specific Docker operations."
+                    }
+                },
+                "required": [
+                    "operation",
+                    "target"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "package_operation",
+            "description": "Perform package manager operations such as install, uninstall, list, and search using pip, npm, or yarn.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "install",
+                            "uninstall",
+                            "list",
+                            "search"
+                        ],
+                        "description": "Specify the type of package operation to perform."
+                    },
+                    "package_name": {
+                        "type": "string",
+                        "description": "Provide the name of the package to operate on."
+                    },
+                    "manager": {
+                        "type": "string",
+                        "enum": [
+                            "pip",
+                            "npm",
+                            "yarn"
+                        ],
+                        "description": "Select the package manager to use.",
+                        "default": "pip"
+                    },
+                    "args": {
+                        "type": "object",
+                        "description": "Supply additional arguments for specific operations.",
+                        "properties": {
+                            "version": {
+                                "type": "string",
+                                "description": "Specify the version to install."
+                            },
+                            "global": {
+                                "type": "boolean",
+                                "description": "Indicate whether to install globally (for npm/yarn)."
+                            },
+                            "dev": {
+                                "type": "boolean",
+                                "description": "Indicate whether to install as a dev dependency (for npm/yarn)."
+                            }
+                        },
+                        "required": []
+                    }
+                },
+                "required": [
+                    "operation",
+                    "package_name"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "http_request",
+            "description": "Make an HTTP request to a specified URL using the chosen method, headers, and data.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "Specify the target URL for the HTTP request."
+                    },
+                    "method": {
+                        "type": "string",
+                        "enum": [
+                            "GET",
+                            "POST",
+                            "PUT",
+                            "DELETE",
+                            "HEAD",
+                            "OPTIONS"
+                        ],
+                        "description": "Select the HTTP method to use.",
+                        "default": "GET"
+                    },
+                    "headers": {
+                        "type": "object",
+                        "description": "Provide HTTP headers to include in the request."
+                    },
+                    "data": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "Include data to send in the request body."
+                    },
+                    "timeout": {
+                        "type": "integer",
+                        "description": "Set the request timeout in seconds.",
+                        "default": 30
+                    },
+                    "follow_redirects": {
+                        "type": "boolean",
+                        "description": "Indicate whether to follow HTTP redirects.",
+                        "default": true
+                    },
+                    "verify_ssl": {
+                        "type": "boolean",
+                        "description": "Indicate whether to verify SSL certificates.",
+                        "default": true
+                    }
+                },
+                "required": [
+                    "url"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "network_diagnostic",
+            "description": "Perform network diagnostics such as ping, traceroute, and DNS lookups.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "target": {
+                        "type": "string",
+                        "description": "Specify the target host or IP address."
+                    },
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "ping",
+                            "traceroute",
+                            "nslookup"
+                        ],
+                        "description": "Select the type of diagnostic operation to perform."
+                    },
+                    "args": {
+                        "type": "object",
+                        "properties": {
+                            "count": {
+                                "type": "integer",
+                                "description": "Set the number of ping requests."
+                            },
+                            "timeout": {
+                                "type": "integer",
+                                "description": "Set the operation timeout in seconds."
+                            },
+                            "dns_server": {
+                                "type": "string",
+                                "description": "Specify the DNS server to use for nslookup."
+                            }
+                        },
+                        "required": [
+                            "count",
+                            "timeout",
+                            "dns_server"
+                        ],
+                        "description": "Provide additional arguments for the operation."
+                    }
+                },
+                "required": [
+                    "target",
+                    "operation",
+                    "args"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "ssh_operation",
+            "description": "Perform SSH operations including connection, command execution, and file transfer (SCP).",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "operation": {
+                        "type": "string",
+                        "enum": [
+                            "connect",
+                            "execute",
+                            "scp_upload",
+                            "scp_download"
+                        ],
+                        "description": "Specify the type of SSH operation to perform."
+                    },
+                    "host": {
+                        "type": "string",
+                        "description": "Provide the target hostname or IP address."
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "Enter the username for SSH authentication."
+                    },
+                    "args": {
+                        "type": "object",
+                        "properties": {
+                            "password": {
+                                "type": "string",
+                                "description": "Enter the password for authentication."
+                            },
+                            "key_file": {
+                                "type": "string",
+                                "description": "Specify the path to the private key file."
+                            },
+                            "command": {
+                                "type": "string",
+                                "description": "Provide the command to execute for the 'execute' operation."
+                            },
+                            "local_path": {
+                                "type": "string",
+                                "description": "Specify the local file path for SCP operations."
+                            },
+                            "remote_path": {
+                                "type": "string",
+                                "description": "Specify the remote file path for SCP operations."
+                            },
+                            "port": {
+                                "type": "integer",
+                                "description": "Set the SSH port number.",
+                                "default": 22
+                            },
+                            "timeout": {
+                                "type": "integer",
+                                "description": "Set the connection timeout in seconds."
+                            }
+                        },
+                        "required": [
+                            "password",
+                            "key_file",
+                            "command",
+                            "local_path",
+                            "remote_path",
+                            "timeout"
+                        ]
+                    }
+                },
+                "required": [
+                    "operation",
+                    "host",
+                    "username",
+                    "args"
+                ]
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "network_info",
+            "description": "Retrieve detailed information about network interfaces, routing, and DNS configuration.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        "category": "SystemTools",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    }
+]

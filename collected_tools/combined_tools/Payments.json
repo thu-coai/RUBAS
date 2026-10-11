@@ -1,0 +1,451 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "create_alipay_payment",
+            "description": "Create a new payment request using Alipay.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "Payment amount (up to 2 decimal places)."
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Payment currency code.",
+                        "enum": [
+                            "CNY",
+                            "USD",
+                            "JPY",
+                            "EUR",
+                            "GBP",
+                            "HKD",
+                            "CAD",
+                            "AUD"
+                        ],
+                        "default": "CNY"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "Payment subject or description."
+                    },
+                    "buyer_id": {
+                        "type": "string",
+                        "description": "Alipay user ID of the buyer."
+                    },
+                    "payment_method": {
+                        "type": "string",
+                        "description": "Payment method to use.",
+                        "enum": [
+                            "BALANCE",
+                            "BANK_CARD",
+                            "CREDIT_PAY"
+                        ],
+                        "default": "BALANCE"
+                    },
+                    "notify_url": {
+                        "type": "string",
+                        "description": "URL for receiving payment notifications."
+                    }
+                },
+                "required": [
+                    "amount",
+                    "subject",
+                    "buyer_id",
+                    "notify_url"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_alipay_payment",
+            "description": "Query the status of an Alipay payment.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "payment_id": {
+                        "type": "string",
+                        "description": "Specify the payment ID to query."
+                    }
+                },
+                "required": [
+                    "payment_id"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_apple_pay_payment",
+            "description": "Create a new payment request using Apple Pay.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "Specify the payment amount (up to 2 decimal places)."
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Specify the payment currency code.",
+                        "enum": [
+                            "USD",
+                            "CNY",
+                            "JPY",
+                            "EUR",
+                            "GBP",
+                            "HKD",
+                            "CAD",
+                            "AUD"
+                        ],
+                        "default": "USD"
+                    },
+                    "merchant_id": {
+                        "type": "string",
+                        "description": "Provide the Apple Pay merchant identifier."
+                    },
+                    "payment_data": {
+                        "type": "object",
+                        "description": "Provide the encrypted payment data from Apple Pay.",
+                        "properties": {
+                            "network": {
+                                "type": "string",
+                                "description": "Specify the payment network.",
+                                "enum": [
+                                    "VISA",
+                                    "MASTERCARD",
+                                    "AMEX",
+                                    "DISCOVER"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "network"
+                        ]
+                    },
+                    "line_items": {
+                        "type": "array",
+                        "description": "List the items being purchased.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "label": {
+                                    "type": "string",
+                                    "description": "Specify the item label."
+                                },
+                                "amount": {
+                                    "type": "number",
+                                    "description": "Specify the item amount."
+                                }
+                            },
+                            "required": [
+                                "label",
+                                "amount"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "amount",
+                    "merchant_id",
+                    "payment_data",
+                    "line_items"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_apple_pay_payment",
+            "description": "Query the status of an Apple Pay payment.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "payment_id": {
+                        "type": "string",
+                        "description": "Specify the payment ID to query."
+                    }
+                },
+                "required": [
+                    "payment_id"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_paypal_payment",
+            "description": "Create a new payment request using PayPal.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "Specify the payment amount (up to 2 decimal places)."
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Specify the payment currency code.",
+                        "enum": [
+                            "USD",
+                            "EUR",
+                            "GBP",
+                            "CAD",
+                            "AUD"
+                        ],
+                        "default": "USD"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Provide a description for the payment."
+                    },
+                    "intent": {
+                        "type": "string",
+                        "description": "Set the payment intent.",
+                        "enum": [
+                            "CAPTURE",
+                            "AUTHORIZE"
+                        ],
+                        "default": "CAPTURE"
+                    },
+                    "payer_email": {
+                        "type": "string",
+                        "description": "Enter the email address of the payer."
+                    },
+                    "return_url": {
+                        "type": "string",
+                        "description": "Specify the URL to redirect to after successful payment."
+                    },
+                    "cancel_url": {
+                        "type": "string",
+                        "description": "Specify the URL to redirect to if payment is cancelled."
+                    },
+                    "items": {
+                        "type": "array",
+                        "description": "List the items being purchased.",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Specify the item name."
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "description": "Specify the item quantity."
+                                },
+                                "unit_amount": {
+                                    "type": "number",
+                                    "description": "Specify the price per unit."
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "quantity",
+                                "unit_amount"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "amount",
+                    "description",
+                    "payer_email",
+                    "return_url",
+                    "cancel_url",
+                    "items"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_paypal_payment",
+            "description": "Query the status of a PayPal payment.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "payment_id": {
+                        "type": "string",
+                        "description": "Specify the payment ID to query."
+                    }
+                },
+                "required": [
+                    "payment_id"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_wechat_pay_payment",
+            "description": "Create a new payment request using WeChat Pay.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "Specify the payment amount (up to 2 decimal places)."
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Select the payment currency code.",
+                        "enum": [
+                            "CNY",
+                            "USD",
+                            "HKD"
+                        ],
+                        "default": "CNY"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Provide a description for the payment."
+                    },
+                    "trade_type": {
+                        "type": "string",
+                        "description": "Choose the payment trade type.",
+                        "enum": [
+                            "NATIVE",
+                            "JSAPI",
+                            "H5",
+                            "APP"
+                        ],
+                        "default": "NATIVE"
+                    },
+                    "openid": {
+                        "type": "string",
+                        "description": "Enter the WeChat user OpenID (required for JSAPI)."
+                    },
+                    "notify_url": {
+                        "type": "string",
+                        "description": "Provide the URL for receiving payment notifications."
+                    }
+                },
+                "required": [
+                    "amount",
+                    "description",
+                    "openid",
+                    "notify_url"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_wechat_pay_payment",
+            "description": "Query the status of a WeChat Pay payment.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "payment_id": {
+                        "type": "string",
+                        "description": "Specify the payment ID to query."
+                    }
+                },
+                "required": [
+                    "payment_id"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "stripe_create_payment",
+            "description": "Create a Stripe payment session with payment links and QR code for various payment methods.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "amount": {
+                        "type": "number",
+                        "description": "Specify the amount in the smallest currency unit (e.g., cents for USD). For example, $10.00 should be passed as 1000."
+                    },
+                    "currency": {
+                        "type": "string",
+                        "description": "Provide a three-letter ISO currency code (e.g., USD, EUR, GBP).",
+                        "pattern": "^[A-Z]{3}$"
+                    },
+                    "payment_method_types": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "card",
+                                "alipay",
+                                "wechat_pay",
+                                "klarna",
+                                "afterpay_clearpay",
+                                "ideal"
+                            ]
+                        },
+                        "description": "List the payment methods to accept."
+                    },
+                    "success_url": {
+                        "type": "string",
+                        "description": "Provide the URL to redirect after successful payment."
+                    },
+                    "cancel_url": {
+                        "type": "string",
+                        "description": "Provide the URL to redirect after cancelled payment."
+                    },
+                    "customer_email": {
+                        "type": "string",
+                        "description": "Specify the customer's email address."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Add an optional description for the payment."
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "description": "Include optional key-value pairs for additional payment information."
+                    }
+                },
+                "required": [
+                    "amount",
+                    "currency",
+                    "payment_method_types",
+                    "success_url",
+                    "cancel_url",
+                    "customer_email"
+                ]
+            }
+        },
+        "category": "Payments",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    }
+]

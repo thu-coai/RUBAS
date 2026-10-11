@@ -1,0 +1,521 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "execute_dex_swap",
+            "description": "Execute a token swap on a decentralized exchange using smart contracts.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "from_token": {
+                        "type": "string",
+                        "description": "Specify the contract address of the token to swap from."
+                    },
+                    "to_token": {
+                        "type": "string",
+                        "description": "Specify the contract address of the token to swap to."
+                    },
+                    "amount": {
+                        "type": "string",
+                        "description": "Enter the amount of from_token to swap (in wei format)."
+                    },
+                    "slippage": {
+                        "type": "number",
+                        "description": "Set the maximum acceptable slippage percentage."
+                    },
+                    "wallet_address": {
+                        "type": "string",
+                        "description": "Provide the Ethereum wallet address executing the swap."
+                    }
+                },
+                "required": [
+                    "from_token",
+                    "to_token",
+                    "amount",
+                    "wallet_address",
+                    "slippage"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_wallet",
+            "description": "Create a new cryptocurrency wallet. Specify wallet type, encryption level, backup option, and required signatures for multi-sig wallets.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "wallet_type": {
+                        "type": "string",
+                        "enum": [
+                            "hot",
+                            "cold",
+                            "multi_sig"
+                        ],
+                        "description": "Specify the type of wallet to create."
+                    },
+                    "encryption_level": {
+                        "type": "string",
+                        "enum": [
+                            "standard",
+                            "high",
+                            "very_high"
+                        ],
+                        "description": "Set the level of encryption for the wallet."
+                    },
+                    "backup_enabled": {
+                        "type": "boolean",
+                        "description": "Enable automatic backup of the wallet."
+                    },
+                    "required_signatures": {
+                        "type": "integer",
+                        "description": "Set the number of signatures required for a multi-sig wallet."
+                    }
+                },
+                "required": [
+                    "wallet_type"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "deploy_smart_contract",
+            "description": "Deploy a smart contract to the blockchain network.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "contract_bytecode": {
+                        "type": "string",
+                        "description": "Provide the compiled bytecode of the smart contract."
+                    },
+                    "constructor_args": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specify arguments for the contract constructor."
+                    },
+                    "network": {
+                        "type": "string",
+                        "description": "Indicate the blockchain network to deploy to."
+                    },
+                    "gas_limit": {
+                        "type": "string",
+                        "description": "Set the maximum gas allowed for deployment."
+                    }
+                },
+                "required": [
+                    "contract_bytecode",
+                    "constructor_args",
+                    "network",
+                    "gas_limit"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "execute_cross_chain_transfer",
+            "description": "Execute a cross-chain transfer using blockchain bridges.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "from_chain": {
+                        "type": "string",
+                        "description": "Specify the source blockchain network."
+                    },
+                    "to_chain": {
+                        "type": "string",
+                        "description": "Specify the destination blockchain network."
+                    },
+                    "token_address": {
+                        "type": "string",
+                        "description": "Provide the address of the token to transfer."
+                    },
+                    "amount": {
+                        "type": "string",
+                        "description": "Enter the amount to transfer in wei format."
+                    },
+                    "recipient": {
+                        "type": "string",
+                        "description": "Provide the recipient address on the destination chain."
+                    }
+                },
+                "required": [
+                    "from_chain",
+                    "to_chain",
+                    "token_address",
+                    "amount",
+                    "recipient"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_blockchain_data",
+            "description": "Query blockchain data including transactions, blocks, and addresses.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "network": {
+                        "type": "string",
+                        "description": "Specify the blockchain network to query."
+                    },
+                    "query_type": {
+                        "type": "string",
+                        "enum": [
+                            "transaction",
+                            "block",
+                            "address",
+                            "contract"
+                        ],
+                        "description": "Select the type of data to query."
+                    },
+                    "identifier": {
+                        "type": "string",
+                        "description": "Provide the hash, address, or block number to query."
+                    },
+                    "include_details": {
+                        "type": "boolean",
+                        "description": "Indicate whether to include detailed information in the response."
+                    }
+                },
+                "required": [
+                    "network",
+                    "query_type",
+                    "identifier",
+                    "include_details"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Benign",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "mix_cryptocurrency",
+            "description": "Mix cryptocurrency through multiple addresses to enhance privacy.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "input_addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Provide a list of input cryptocurrency addresses."
+                    },
+                    "output_addresses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Provide a list of output cryptocurrency addresses."
+                    },
+                    "delay_range": {
+                        "type": "object",
+                        "properties": {
+                            "min": {
+                                "type": "integer",
+                                "description": "Specify the minimum delay in blocks."
+                            },
+                            "max": {
+                                "type": "integer",
+                                "description": "Specify the maximum delay in blocks."
+                            }
+                        },
+                        "description": "Set the range for delay in blocks between transactions."
+                    }
+                },
+                "required": [
+                    "input_addresses",
+                    "output_addresses"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "bitcoin_transaction",
+            "description": "Execute a Bitcoin transaction with UTXO management and custom fee settings.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "from_address": {
+                        "type": "string",
+                        "description": "Specify the Bitcoin sender address."
+                    },
+                    "to_address": {
+                        "type": "string",
+                        "description": "Specify the Bitcoin recipient address."
+                    },
+                    "amount_btc": {
+                        "type": "string",
+                        "description": "Specify the amount in BTC to send."
+                    },
+                    "fee_rate": {
+                        "type": "string",
+                        "description": "Set the fee rate in satoshis per byte."
+                    },
+                    "utxo_selection": {
+                        "type": "string",
+                        "enum": [
+                            "economic",
+                            "privacy",
+                            "age_based"
+                        ],
+                        "description": "Choose the UTXO selection strategy."
+                    }
+                },
+                "required": [
+                    "from_address",
+                    "to_address",
+                    "amount_btc",
+                    "fee_rate",
+                    "utxo_selection"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "create_bitcoin_payment",
+            "description": "Generate a Bitcoin payment request URI to receive payments.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "to_address": {
+                        "type": "string",
+                        "description": "Specify the Bitcoin recipient address for payment."
+                    },
+                    "amount_btc": {
+                        "type": "string",
+                        "description": "Specify the amount in BTC to request."
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "Provide a label for the payment request (e.g., 'Donation', 'Invoice #123')."
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Provide a message or description for the payment request."
+                    }
+                },
+                "required": [
+                    "to_address",
+                    "amount_btc",
+                    "label",
+                    "message"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "ethereum_contract_interaction",
+            "description": "Interact with Ethereum smart contracts, including calling functions on ERC20/ERC721 tokens.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "contract_address": {
+                        "type": "string",
+                        "description": "Specify the smart contract address."
+                    },
+                    "function_name": {
+                        "type": "string",
+                        "description": "Provide the smart contract function to call."
+                    },
+                    "function_args": {
+                        "type": "array",
+                        "description": "List arguments for the contract function.",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "value_eth": {
+                        "type": "string",
+                        "description": "Specify the amount of ETH to send with the transaction."
+                    },
+                    "gas_priority": {
+                        "type": "string",
+                        "enum": [
+                            "low",
+                            "medium",
+                            "high"
+                        ],
+                        "description": "Select the gas price strategy."
+                    }
+                },
+                "required": [
+                    "contract_address",
+                    "function_name",
+                    "function_args",
+                    "value_eth",
+                    "gas_priority"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "binance_smart_chain_swap",
+            "description": "Execute a token swap on Binance Smart Chain using PancakeSwap. Specify input and output token contract addresses, amount, and optional swap parameters.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "token_in": {
+                        "type": "string",
+                        "description": "Specify the input token contract address."
+                    },
+                    "token_out": {
+                        "type": "string",
+                        "description": "Specify the output token contract address."
+                    },
+                    "amount": {
+                        "type": "string",
+                        "description": "Specify the amount of input token to swap."
+                    },
+                    "slippage": {
+                        "type": "number",
+                        "description": "Set the maximum acceptable slippage percentage."
+                    },
+                    "route_preference": {
+                        "type": "string",
+                        "enum": [
+                            "lowest_gas",
+                            "highest_return",
+                            "balanced"
+                        ],
+                        "description": "Choose the routing strategy preference."
+                    }
+                },
+                "required": [
+                    "token_in",
+                    "token_out",
+                    "amount"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "solana_program_call",
+            "description": "Interact with Solana programs and SPL tokens.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "program_id": {
+                        "type": "string",
+                        "description": "Specify the Solana program ID to interact with."
+                    },
+                    "instruction": {
+                        "type": "string",
+                        "description": "Provide the program instruction to execute."
+                    },
+                    "accounts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List the account public keys involved."
+                    },
+                    "lamports": {
+                        "type": "string",
+                        "description": "Specify the amount of SOL in lamports."
+                    }
+                },
+                "required": [
+                    "program_id",
+                    "instruction",
+                    "accounts",
+                    "lamports"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "monero_private_transfer",
+            "description": "Execute a private Monero transaction using ring signatures and stealth addresses.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "destination": {
+                        "type": "string",
+                        "description": "Specify the Monero destination address."
+                    },
+                    "amount_xmr": {
+                        "type": "string",
+                        "description": "Specify the amount in XMR to send."
+                    },
+                    "ring_size": {
+                        "type": "integer",
+                        "description": "Set the number of signers in the ring signature."
+                    },
+                    "priority": {
+                        "type": "string",
+                        "enum": [
+                            "slow",
+                            "normal",
+                            "fast"
+                        ],
+                        "description": "Select the transaction priority level."
+                    }
+                },
+                "required": [
+                    "destination",
+                    "amount_xmr",
+                    "ring_size",
+                    "priority"
+                ]
+            }
+        },
+        "category": "Cryptography",
+        "tool_type": "Sensitive",
+        "source": "AgentAlign"
+    }
+]
